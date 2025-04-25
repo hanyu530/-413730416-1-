@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sketch</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <script>
+      function showVideo() {
+        const iframe = document.getElementById('videoFrame');
+        iframe.style.display = 'block'; // 顯示 videoFrame
+      }
+
+      function loadIframe(url) {
+        const iframe = document.getElementById('content-frame');
+        iframe.style.display = 'block'; // 顯示 iframe
+        iframe.src = url;
+      }
+
+      function hideIframe() {
+        const contentFrame = document.getElementById('content-frame');
+        const videoFrame = document.getElementById('videoFrame');
+
+        // 隱藏 content-frame 和 videoFrame
+        contentFrame.style.display = 'none';
+        contentFrame.src = ''; // 清空 content-frame 的內容
+
+        videoFrame.style.display = 'none';
+        videoFrame.src = ''; // 清空 videoFrame 的內容
+      }
+    </script>
+  </head>
+
+  <body>
+    <!-- 右上角選單 -->
+    <ul class="menu" id="menu">
+      <li><a href="#home" onclick="hideIframe()">首頁</a></li>
+      <li><a href="#about" onclick="loadIframe('https://hanyu530.github.io/-/')">自我介紹</a></li>
+      <li class="dropdown">
+        <a href="#portfolio">作品集</a>
+        <ul class="submenu">
+          <li><a href="#" onclick="loadIframe('https://hanyu530.github.io/20250221/')">第一周</a></li>
+          <li><a href="#" onclick="loadIframe('https://hanyu530.github.io/20250328/')">第二周</a></li>
+          <li><a href="#" onclick="loadIframe('https://hanyu530.github.io/0314/')">第三周</a></li>
+          <li><a href="#" onclick="loadIframe('https://hackmd.io/d-kKxsl7TPKjiB8T7JviCA')">第四周</a></li>
+        </ul>
+      </li>
+      <li><a href="#quiz" onclick="loadIframe('https://hanyu530.github.io/0321/')">測驗卷</a></li>
+      <li><a href="#tutorials" onclick="showVideo()">教學影片</a></li>
+    </ul>
+
+    <!-- iframe 顯示區域 -->
+    <iframe id="content-frame" src="" frameborder="0" style="display: none;"></iframe>
+    <iframe id="videoFrame" src="https://cfchen58.synology.me/%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%882024/A2/week5/20250321_094031.mp4" style="display: none;"></iframe>
+
+    <script src="sketch.js"></script>
+    <script>
+      // 顯示或隱藏選單（滑入滑出效果）
+      document.addEventListener('mousemove', (event) => {
+        const menu = document.getElementById('menu');
+        if (event.clientY < 250) {
+          menu.style.top = '0px'; // 滑入
+        } else {
+          menu.style.top = '-100px'; // 滋出（隱藏）
+        }
+      });
+    </script>
+  </body>
+</html>
